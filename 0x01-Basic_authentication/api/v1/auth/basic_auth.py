@@ -92,15 +92,16 @@ class BasicAuth(Auth):
         """
         Retrieve the first user (assuming email is unique)
         """
-        user = users[0]
-
-        """
-        Check if the provided password is valid
-        """
-        if not user.is_valid_password(user_pwd):
+        try:
+            users = User.search({"email": user_email})
+            if not users or users == []:
+                return None
+            for user in users:
+                if user.is_valid_password(user_pwd):
+                    return user
             return None
-
-        return user
+        except Exception:
+            return None
 
     def current_user(self, request=None) -> TypeVar('User'):
         """ Current User method
