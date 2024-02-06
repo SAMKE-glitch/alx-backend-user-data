@@ -69,7 +69,7 @@ you must use jsonify from Flask
 For testing this new error handler, add a new endpoint in api/v1/views/index.py:
 
 Route: GET /api/v1/unauthorized
-This endpoint must raise a 401 error by using abort - Custom Error Pages
+This endpoint must raise a 401 error by using abort - Custom Error Pages(https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/)
 By calling abort(401), the error handler for 401 will be executed.
 
 In the first terminal:
